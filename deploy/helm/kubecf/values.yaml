@@ -34,6 +34,8 @@ kube:
   # prevent KubeCF from creating a new one, set the kube.psp.default with the PSP name.
   psp:
     default: ~
+  admin:
+    password: ~
 
 releases:
   # The defaults for all releases, where we do not otherwise override them.
