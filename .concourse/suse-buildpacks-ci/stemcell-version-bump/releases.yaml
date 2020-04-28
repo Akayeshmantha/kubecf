@@ -1,0 +1,10 @@
+releases:
+- name: "go-buildpack"
+  uri: "git@github.com:SUSE/cf-go-buildpack-release.git"
+  repo: "cf-go-buildpack-release"
+  name_in_values_yaml: "suse-go-buildpack"
+
+- name: "nodejs-buildpack"
+  uri: "git@github.com:SUSE/cf-nodejs-buildpack-release.git"
+  repo: "cf-nodejs-buildpack-release"
+  name_in_values_yaml: "suse-nodejs-buildpack"
