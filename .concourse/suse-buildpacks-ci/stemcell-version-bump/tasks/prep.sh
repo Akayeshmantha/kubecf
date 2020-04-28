@@ -37,7 +37,7 @@ for release in input_releases:
     output_release["sha1"] = fetch_sha1(output_release["url"])
     output_releases.append(output_release)
 
-with open("buildpacks_to_be_built/output_releases.yaml", 'w') as f:
+with open("buildpacks_to_be_built/releases.yaml", 'w') as f:
     yaml.dump(output_releases, f)
 
 EOF

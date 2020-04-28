@@ -29,15 +29,5 @@ stemcell_version="$(cat s3.stemcell-version/"${STEMCELL_VERSIONED_FILE##*/}")"
 stemcell_image="${STEMCELL_REPOSITORY}:${stemcell_version}"
 docker pull "${stemcell_image}"
 
-pushd suse_final_release
-RELEASE_VERSION=$(cat version)
-RELEASE_URL=$(cat url)
-RELEASE_SHA=$(sha1sum ./*.tgz | cut -d' ' -f1)
-popd
-
 tasks_dir="$(dirname "$0")"
-# shellcheck source=/dev/null
-source "${tasks_dir}"/build_release.sh
-build_release "${REGISTRY_NAME}" "${REGISTRY_ORG}" "${stemcell_image}" "${RELEASE_NAME}" "${RELEASE_URL}" "${RELEASE_VERSION}" "${RELEASE_SHA}"
-
-bash <(yq -r ".manifest_version as \$cf_version | .releases[] | select(.name != \"pxc\") | \"source ${tasks_dir}/build_release.sh; build_release \\(\$cf_version|@sh) '${REGISTRY_NAME}' '${REGISTRY_ORG}' '${stemcell_image}' \\(.name|@sh) \\(.url|@sh) \\(.version|@sh) \\(.sha1|@sh)\"" "${KUBECF_VALUES}")
+bash <(yq -r ".manifest_version as \$cf_version | .releases[] | select(.name != \"pxc\") | \"source ${tasks_dir}/build_release.sh; build_release \\(\$cf_version|@sh) '${REGISTRY_NAME}' '${REGISTRY_ORG}' '${stemcell_image}' \\(.name|@sh) \\(.url|@sh) \\(.version|@sh) \\(.sha1|@sh)\"" "buildpack_releases/releases.yaml")

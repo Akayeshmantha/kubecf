@@ -65,7 +65,7 @@ jobs:
         REGISTRY_ORG: ((suse-public-staging.org))
         REGISTRY_USER: ((suse-public-staging.username))
         REGISTRY_PASS: ((suse-public-staging.password))
-      file: ci/.concourse/suse-buildpacks-ci/stemcell-version-bump/tasks/build.yml
+      file: ci/.concourse/suse-buildpacks-ci/stemcell-version-bump/tasks/build.yaml
 
     - task: create-pr
       privileged: true
@@ -78,4 +78,4 @@ jobs:
         GIT_USER: {{ .git_user }}
         KUBECF_BRANCH: {{ .kubecf_branch }}
         KUBECF_VALUES: {{ .kubecf_values }}
-      file: ci/.concourse/suse-buildpacks-ci/stemcell-version-bump/tasks/create_pr.yml
+      file: ci/.concourse/suse-buildpacks-ci/stemcell-version-bump/tasks/create_pr.yaml
