@@ -11,5 +11,8 @@ inputs:
 - name: kubecf
 outputs:
 - name: buildpacks_to_be_built
+params:
+  RELEASES_YAML: ~
+  KUBECF_VALUES_YAML: ~
 run:
   path: ci/.concourse/suse-buildpacks-ci/stemcell-version-bump/tasks/prep.py

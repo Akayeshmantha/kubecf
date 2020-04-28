@@ -13,7 +13,7 @@ def fetch_sha1(url):
 yaml = ruamel.yaml.YAML()
 yaml.preserve_quotes = True
 
-with open("${RELEASES_YAML}") as f1, open("${KUBECF_VALUES}") as f2:
+with open("${RELEASES_YAML}") as f1, open("${KUBECF_VALUES_YAML}") as f2:
     input_releases = yaml.load(f1)["releases"]
     values = yaml.load(f2)["releases"]
 

@@ -49,6 +49,9 @@ jobs:
   - do:
     - task: prep
       privileged: true
+      params:
+        RELEASES_YAML: ci/.concourse/suse-buildpacks-ci/releases.yaml
+        KUBECF_VALUES_YAML: kubecf/deploy/helm/kubecf/values.yaml
       file: ci/.concourse/suse-buildpacks-ci/stemcell-version-bump/tasks/prep.yaml
 
     - task: build
