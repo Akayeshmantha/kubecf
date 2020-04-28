@@ -30,4 +30,4 @@ stemcell_image="${STEMCELL_REPOSITORY}:${stemcell_version}"
 docker pull "${stemcell_image}"
 
 tasks_dir="$(dirname "$0")"
-bash <(yq -r ".manifest_version as \$cf_version | .releases[] | select(.name != \"pxc\") | \"source ${tasks_dir}/build_release.sh; build_release \\(\$cf_version|@sh) '${REGISTRY_NAME}' '${REGISTRY_ORG}' '${stemcell_image}' \\(.name|@sh) \\(.url|@sh) \\(.version|@sh) \\(.sha1|@sh)\"" "buildpack_releases/releases.yaml")
+bash <(yq -r ".[] | \"source ${tasks_dir}/build_release.sh; build_release '${REGISTRY_NAME}' '${REGISTRY_ORG}' '${stemcell_image}' \\(.name|@sh) \\(.url|@sh) \\(.version|@sh) \\(.sha1|@sh)\"" "buildpack_releases/releases.yaml")

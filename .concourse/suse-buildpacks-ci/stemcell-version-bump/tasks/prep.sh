@@ -33,7 +33,7 @@ for release in input_releases:
     output_release = {}
     output_release["name"] = release["name"]
     output_release["version"] = values[release["name_in_values_yaml"]]["version"]
-    output_release["url"] = "https://s3.amazonaws.com/suse-final-releases/{}-{}.tgz".format(release["name_in_values_yaml"], output_release["version"])
+    output_release["url"] = "https://s3.amazonaws.com/suse-final-releases/{}-release-{}.tgz".format(release["name"], output_release["version"])
     output_release["sha1"] = fetch_sha1(output_release["url"])
     output_releases.append(output_release)
 
