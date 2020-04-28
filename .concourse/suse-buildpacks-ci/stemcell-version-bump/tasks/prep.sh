@@ -1,3 +1,14 @@
+#!/usr/bin/env bash
+
+# NEVER SET xtrace!
+set -o errexit -o nounset
+
+function generate_releases_file() {
+
+RELEASES_YAML=$1
+KUBECF_VALUES_YAML=$2
+
+PYTHON_CODE=$(cat <<EOF 
 #!/usr/bin/python3
 
 import ruamel.yaml
@@ -28,3 +39,11 @@ for release in input_releases:
 
 with open("buildpacks_to_be_built/output_releases.yaml", 'w') as f:
     yaml.dump(output_releases, f)
+
+EOF
+)
+
+python3 -c "${PYTHON_CODE}"
+}
+
+generate_releases_file "${RELEASES_YAML}" "${KUBECF_VALUES_YAML}"
