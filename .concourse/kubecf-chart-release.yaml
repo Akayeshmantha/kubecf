@@ -1,0 +1,56 @@
+
+resources:
+- name: kubecf-master
+  type: git
+  source:
+    branch: master
+    uri: https://github.com/Akayeshmantha/kubecf
+- name: kubecf-helm
+  type: git
+  source:
+    branch: master
+    uri: https://github.com/Akayeshmantha/kubecf-helm.git
+
+jobs:
+- name: build-master
+  public: true # TODO: public or not?
+  plan:
+  - get: kubecf-master
+    trigger: true
+    version: "every"
+  - task: build
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: thulioassis/bazel-docker-image
+          tag: 2.0.0
+      inputs:
+        - name: kubecf-master
+      outputs:
+        - name: outputfolder
+      run:
+        path: "/bin/bash"
+        args:
+          - -xce
+          - |
+            cd kubecf-master
+            ./dev/build.sh ../outputfolder
+  - task: create-pr
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: cfcontainerization/go-tools
+          tag: latest
+      inputs:
+        - name: kubecf-master
+        - name: kubecf-helm
+        - name: outputfolder
+      run:
+        path: kubecf-master/.concourse/tasks/create-pr.sh
+      params:
+        USERNAME: akayeshmantha
+        PASSWORD:

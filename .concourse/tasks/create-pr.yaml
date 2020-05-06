@@ -1,0 +1,12 @@
+---
+  platform: linux
+  image_resource:
+    type: docker-image
+    source:
+      repository: cfcontainerization/go-tools
+      tag: latest
+  inputs:
+    - name: build-master
+    - name: kubecf
+  run:
+    path: kubecf/.concourse/tasks/create-pr.sh
