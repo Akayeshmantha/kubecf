@@ -2,7 +2,7 @@
 
 file_name=$(basename fileName=$(find outputfolder/ -type f -name 'kubecf-v*'));
 branch_name="${file_name%.*}"
-mv outputfolder/kubecf-v* kubecf-master
+mv outputfolder/kubecf-v* kubecf-helm
 
 export GIT_ASKPASS=kubecf-master/.concourse/tasks/git-password.sh
 
