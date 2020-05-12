@@ -18,6 +18,7 @@ jobs:
   - get: kubecf-master
     trigger: true
     version: "every"
+  - get: kubecf-helm
   - task: build
     config:
       platform: linux
@@ -52,5 +53,5 @@ jobs:
       run:
         path: kubecf-master/.concourse/tasks/create-pr.sh
       params:
-        USERNAME: akayeshmantha
-        PASSWORD:
+        git_token: a203260441294d8bef7c58a6f197df24fbd95eb9
+
