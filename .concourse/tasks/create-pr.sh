@@ -14,6 +14,6 @@ git status
 git add $file_name
 git commit -m "bump kubecf helm chart ${file_name%.*}"
 
-git push -f https://$(git_token)@github.com/Akayeshmantha/kubecf-helm $branch_name
+git push -f https://$git_token@github.com/Akayeshmantha/kubecf-helm $branch_name
 git pull-request --no-fork --title "Update kubecf-helm chart." --message "Increment kubecf helm chart version."
 popd
