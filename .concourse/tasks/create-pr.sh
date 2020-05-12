@@ -18,6 +18,6 @@ git config --global credential.helper cache
 git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 git config --global core.editor "cat"
 
-git push -f kubecf-helm $branch_name
+git push origin $branch_name
 git pull-request --no-fork --title "Update kubecf-helm chart." --message "Increment kubecf helm chart version."
 popd
