@@ -10,6 +10,7 @@ pushd kubecf-helm/
 git checkout -b $branch_name
 git config --global user.name "akayeshmantha"
 git config --global user.email "akayeshmantha@gmail.com"
+git remote set-url origin https://akayeshmantha:$git_token@github.com/Akayeshmantha/kubecf-helm
 git config credential.https://github.com.username akayeshmantha
 git status
 git add $file_name
