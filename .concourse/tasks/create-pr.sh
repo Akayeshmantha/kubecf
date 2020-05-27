@@ -20,4 +20,4 @@ git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKey
 git config --global core.editor "cat"git push -f https://$git_token@github.com/Akayeshmantha/kubecf-helm $branch_name
 git push -f https://$git_token@github.com/Akayeshmantha/kubecf-helm $branch_name
 git pull-request --no-fork --title "Update kubecf-helm chart." --message "Increment kubecf helm chart version."
-popd                s
+popd
